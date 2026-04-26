@@ -1,0 +1,389 @@
+:root {
+  --primary: #0d6efd;
+  --secondary: #6f42c1;
+  --accent: #20c997;
+  --bg-light: #f8f9fa;
+  --bg-dark: #121212;
+  --card-light: #ffffff;
+  --card-dark: #1e1e1e;
+  --text-main-light: #2b2b2b;
+  --text-main-dark: #f8f9fa;
+  --text-muted-light: #6c757d;
+  --text-muted-dark: #adb5bd;
+  --border-light: #e9ecef;
+  --border-dark: #2d2d2d;
+  --sidebar-width: 250px;
+  --navbar-height: 70px;
+
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-main: #2b2b2b;
+  --text-muted: #6c757d;
+  --border-color: #e9ecef;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+p {
+  color: var(--text-muted);
+}
+
+/* Cards */
+.modern-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modern-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Animations & Spacing */
+.hover-scale {
+  transition: transform 0.2s;
+}
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+/* Sidebar Specific */
+.sidebar-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+  color: var(--primary);
+}
+
+.sidebar-link.active {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+/* Custom Table */
+.table-custom {
+  --bs-table-bg: transparent;
+  color: var(--text-main);
+}
+.table-custom th {
+  border-bottom-width: 2px;
+  border-color: var(--border-color);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.table-custom td {
+  border-color: var(--border-color);
+  vertical-align: middle;
+}
+
+/* Inputs */
+.form-control-custom {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 8px;
+}
+.form-control-custom:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  background-color: var(--card-bg);
+  color: var(--text-main);
+}
+.form-control-custom::placeholder {
+  color: var(--text-muted);
+}
+
+/* ===== Payment Method Cards ===== */
+.payment-method-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 12px;
+  border-radius: 14px;
+  border: 2px solid var(--border-color);
+  background: var(--card-bg);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-method-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--pm-color);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  border-radius: 12px;
+}
+
+.payment-method-card:hover {
+  border-color: var(--pm-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.payment-method-card.active {
+  border-color: var(--pm-color);
+  background: var(--pm-color);
+  color: #fff;
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--pm-color) 35%, transparent);
+}
+
+.payment-method-card.active .payment-method-label {
+  color: #fff;
+}
+
+.payment-method-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.payment-method-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  position: relative;
+  z-index: 1;
+  transition: color 0.25s ease;
+}
+
+/* ===== Payment Apps Container ===== */
+.payment-apps-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 16px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.payment-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+}
+
+.payment-app-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background: var(--card-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-app-card:hover {
+  border-color: var(--app-color);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.payment-app-card.active {
+  border-color: var(--app-color);
+  background: color-mix(in srgb, var(--app-color) 10%, var(--card-bg));
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--app-color) 25%, transparent);
+}
+
+.payment-app-card.active .payment-app-name {
+  color: var(--app-color);
+  font-weight: 700;
+}
+
+.payment-app-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-app-name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  transition: color 0.2s;
+}
+
+/* ===== Dashboard Payment Stats ===== */
+.payment-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.payment-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.payment-stat-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border-color);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.payment-stat-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ===== Add Custom Mode ===== */
+.add-mode-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border-radius: 12px;
+  border: 2px dashed var(--border-color);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.add-mode-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
+}
+
+.add-mode-plus {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.add-mode-btn:hover .add-mode-plus {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ===== Data Entry Animations ===== */
+@keyframes numberScaleUp {
+  0% { opacity: 0; transform: translateY(8px) scale(0.95); }
+  50% { opacity: 0.8; transform: translateY(-2px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animated-number {
+  display: inline-block;
+  animation: numberScaleUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* ===== Scroll Reveal (Intersection Observer) ===== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.scroll-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Mobile Responsiveness & Best UI Arrangements ===== */
+@media (max-width: 767.98px) {
+  .modern-card {
+    padding: 1.25rem !important;
+    border-radius: 16px;
+  }
+  
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  
+  .table-responsive {
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+  }
+  
+  .btn {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+  
+  .nav-pills .nav-link {
+    padding: 0.75rem 1rem !important;
+  }
+  
+  .d-flex.align-items-center.mb-3 img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .sidebar-link {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container-fluid {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  
+  .row.g-4 > [class^="col-"] {
+    margin-top: 1rem;
+  }
+  
+  .card-body {
+    padding: 1rem !important;
+  }
+}
