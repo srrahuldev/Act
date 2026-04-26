@@ -76,7 +76,7 @@ const NewEntry = () => {
 
   const allApps = [
     ...DEFAULT_APPS,
-    ...customApps.map((app, i) => ({
+    ...customPaymentApps.map((app, i) => ({
       id: app.name,
       label: app.name,
       color: app.color || CUSTOM_COLORS[i % CUSTOM_COLORS.length],
